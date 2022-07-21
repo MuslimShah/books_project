@@ -9,8 +9,8 @@ exports.getAddProduct = (req, res, next) => {
 // admin products==>GET
 exports.getAdminProducts = async(req, res, next) => {
     const products = await Product.fetchAll();
-    res.render("admin/product", {
-        product: products,
+    res.render("admin/products", {
+        prods: products,
         pageTitle: "Admin Products",
         path: "/admin/products",
     });
