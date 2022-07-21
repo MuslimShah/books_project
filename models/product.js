@@ -3,8 +3,11 @@ const path = require("path");
 let p = path.join(__dirname, "../data/data.json");
 
 module.exports = class Product {
-    constructor(t) {
-        this.title = t;
+    constructor(title, imageUrl, description, price) {
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.price = price;
     }
     save() {
         return new Promise(async(resolve, reject) => {
@@ -26,7 +29,7 @@ module.exports = class Product {
                 return resolve(products)
             } catch (error) {
 
-                return reject(error);
+                return reject('fetching data error: ' + error);
             }
         });
 

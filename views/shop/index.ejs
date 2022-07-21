@@ -1,22 +1,10 @@
-<%-include('partials/header');-%>
+<%-include('../partials/header');-%>
     <link rel="stylesheet" href="/css/product.css" />
 
     </head>
 
     <body>
-        <%-include('partials/navigations');-%>
-            <!-- <%-include('partials/navigations');-%>
-            <%if(product.length>0){%>
-                <ul>
-                    <%product.forEach((value)=>{%>
-                        <li>
-                            <%=value.title%>
-                        </li> j
-                        <%})%>
-                </ul>
-                <% }else{%>
-                    <h1>no products added yet</h1>
-                    <%}%> -->
+        <%-include('../partials/navigations');-%>
             <%if(product.length>0){%>
                 <div class="grid">
                     <%product.forEach((value)=>{%>
@@ -27,11 +15,15 @@
                                 </h1>
                             </header>
                             <div class="card__image">
-                                <img src="https://cdn.pixabay.com/photo/2016/03/31/20/51/book-1296045_960_720.png" alt="A Book">
+                                <img src=" <%=value.imageUrl%>" alt=" <%=value.title%>">
                             </div>
                             <div class="card__content">
-                                <h2 class="product__price">$19.99</h2>
-                                <p class="product__description">A very interesting book about so many even more interesting things!</p>
+                                <h2 class="product__price">
+                                    <%=value.price%>$
+                                </h2>
+                                <p class="product__description">
+                                    <%=value.description%>
+                                </p>
                             </div>
                             <div class="card__actions">
                                 <button class="btn">Add to Cart</button>
@@ -43,4 +35,4 @@
                     <h1>no products added yet</h1>
                     <%}%>
 
-                        <%-include('partials/footer');-%>
+                        <%-include('../partials/footer');-%>
