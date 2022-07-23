@@ -200,3 +200,12 @@ form {
         display: none;
     }
 }
+
+.centered {
+    text-align: center;
+    width: 80%;
+}
+
+.item-description {
+    text-align: justify;
+}

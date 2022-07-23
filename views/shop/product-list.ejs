@@ -23,14 +23,12 @@
                                         <%= product.price %>
                                     </h2>
                                     <p class="product__description">
-                                        <%= product.description %>
+                                        <%= product.description.substring(0,120)+' ...' %>
                                     </p>
                                 </div>
                                 <div class="card__actions">
-                                    <a href="/product-detail/<%=product.title%>" class="btn">Details</a>
-                                    <form action="/add-to-cart" method="POST">
-                                        <button class="btn">Add to Cart</button>
-                                    </form>
+                                    <a href="/product-detail/<%=product.product_id%>" class="btn">Details</a>
+                                    <%- include('../partials/add-to-cart.ejs',{product:product}) %>
                                 </div>
                             </article>
                             <% } %>

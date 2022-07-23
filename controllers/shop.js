@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const { post } = require("../routes/admin");
 exports.getProducts = async(req, res, next) => {
     const products = await Product.fetchAll();
     res.render("shop/product-list", {
@@ -15,13 +16,20 @@ exports.getIndex = async(req, res, next) => {
         path: "/",
     });
 };
-// cart 
+// cart  ==>GET
 exports.getCart = (req, res, next) => {
     res.render("shop/cart", {
         pageTitle: "Your Cart",
         path: "/cart",
     });
 };
+// cart  ==>POST
+exports.postCart = (req, res, next) => {
+    const product_id = req.body.productId;
+    console.log(product_id);
+    res.redirect('/cart')
+};
+
 // checkout
 exports.getCheckOut = (req, res, next) => {
         res.render("shop/checkout", {
@@ -37,17 +45,12 @@ exports.getOrders = (req, res, next) => {
     });
 };
 //details
-exports.getDetails = async(req, res, next) => {
-    const title = req.params.id;
-    console.log(title);
-    const product = await Product.fetchAll();
-    const foundProduct = product.find((product) => {
-        return product.title === title;
-    })
-
+exports.getProductDetails = async(req, res, next) => {
+    const product_id = req.params.product_id;
+    const product = await Product.getByProductId(product_id);
     res.render("shop/product-detail", {
         pageTitle: "Your details",
-        product: foundProduct,
-        path: "/details",
+        product: product,
+        path: "/products",
     });
-};
+};;
