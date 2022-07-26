@@ -4,6 +4,23 @@
     <body>
         <%- include('../partials/navigation.ejs') %>
             <main>
-                <h1>empty cart</h1>
+               <%if(product.length>0){%>
+                    <ul>
+                       <%product.forEach((prodInfo)=>{%>
+                    
+                        <li>
+                            <p><%=prodInfo.product.title%> (<%=prodInfo.qty%>)</p>
+                            <form action="/admin/delete-cart-product" method="post">
+                                <input type="hidden" name="product_id" value="<%=prodInfo.product.product_id%>">
+                                <button type="submit" class="btn">Delete</button>
+                            </form>
+                        </li>
+
+                    <%})%>
+                    </ul>
+                <%}else{%>
+                    <h1>no products added to cart</h1>
+                    
+                    <%}%>
             </main>
             <%- include('../partials/end.ejs') %>
